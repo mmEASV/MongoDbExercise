@@ -61,7 +61,7 @@ public static class BlogApi
         [FromBody] Blog blog)
     {
         var outputBlog = await blogService.UpdateBlogAsync(id, blog);
-        
+
         return TypedResults.Ok(outputBlog);
     }
 

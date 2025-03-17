@@ -13,15 +13,15 @@ public class MongoDbUserRepository : IUserRepository
     {
         _context = context;
     }
-    
-    public async Task<List<User>> GetUsersAsync () =>
+
+    public async Task<List<User>> GetUsersAsync() =>
         await _context.Users.Find(_ => true).ToListAsync();
-    public async Task<User?> GetUserAsync (string id) =>
+    public async Task<User?> GetUserAsync(string id) =>
         await _context.Users.Find(u => u.Id == id).FirstOrDefaultAsync();
-    public async Task CreateUserAsync (User user) =>
+    public async Task CreateUserAsync(User user) =>
         await _context.Users.InsertOneAsync(user);
-    public async Task UpdateUserAsync (User user) =>
+    public async Task UpdateUserAsync(User user) =>
         await _context.Users.ReplaceOneAsync(u => u.Id == user.Id, user);
-    public async Task DeleteUserAsync (string id) =>
+    public async Task DeleteUserAsync(string id) =>
         await _context.Users.DeleteOneAsync(u => u.Id == id);
 }

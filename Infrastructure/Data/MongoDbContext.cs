@@ -19,7 +19,7 @@ public class MongoDbContext
     {
         _mongoDbSettings = mongoDbSettings;
         _database = new MongoClient(_mongoDbSettings.Value.ConnectionString).GetDatabase(_mongoDbSettings.Value.DatabaseName);
-        
+
         // Register Collections
         Users = _database.GetCollection<User>("Users");
         Blogs = _database.GetCollection<Blog>("Blogs");

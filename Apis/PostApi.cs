@@ -61,7 +61,7 @@ public static class PostApi
         [FromBody] Post post)
     {
         var outputPost = await postService.UpdatePost(id, post);
-        
+
         return TypedResults.Ok(outputPost);
     }
 

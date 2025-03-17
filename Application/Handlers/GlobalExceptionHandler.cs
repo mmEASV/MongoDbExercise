@@ -38,7 +38,8 @@ public class GlobalExceptionHandler : IExceptionHandler
                     break;
             }
         }
-        else {
+        else
+        {
             _logger.LogError(exception, "Unhandled exception occurred: {Message}", exception.Message);
         }
 

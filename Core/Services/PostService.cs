@@ -13,7 +13,7 @@ public class PostService : IPostService
     {
         _postRepository = postRepository;
     }
-    
+
     public async Task<List<Post>> GetPosts() =>
         await _postRepository.GetPostsAsync();
 
@@ -21,18 +21,18 @@ public class PostService : IPostService
         await _postRepository.GetPostAsync(id);
 
     public async Task<Post> CreatePost(Post post)
-    { 
+    {
         await _postRepository.CreatePostAsync(post);
 
         return post;
     }
-    
+
     public async Task<Post> UpdatePost(string id, Post post)
     {
         var postToUpdate = await _postRepository.GetPostAsync(id);
         if (postToUpdate is null)
             throw new NotFoundException();
-        
+
         postToUpdate = post;
         await _postRepository.UpdatePostAsync(postToUpdate);
 
@@ -44,7 +44,7 @@ public class PostService : IPostService
         var post = await _postRepository.GetPostAsync(id);
         if (post is null)
             throw new NotFoundException();
-        
+
         await _postRepository.DeletePostAsync(id);
     }
 }
