@@ -5,7 +5,7 @@ using MongoDbExercise.Models;
 
 namespace MongoDbExercise.Infrastructure.Repositories;
 
-public class MongoDbPostRepository : IPostRepository
+public class MongoDbPostRepository : IPostRepository, IMongoDbPostRepository
 {
     private readonly MongoDbContext _context;
 

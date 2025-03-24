@@ -31,6 +31,11 @@ public class GlobalExceptionHandler : IExceptionHandler
                     title = "NotFound";
                     detail = notFoundException.Message;
                     break;
+                case RateLimitException rateLimitException:
+                    statusCode = StatusCodes.Status400BadRequest;
+                    title = "RateLimitExceeded";
+                    detail = rateLimitException.Message;
+                    break;
                 default:
                     statusCode = StatusCodes.Status500InternalServerError;
                     title = "CustomExceptionNotImplemented";

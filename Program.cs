@@ -16,6 +16,7 @@ builder.Services.AddProblemDetails();
 
 // Add Settings
 builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection("MongoDb"));
+builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection("MongoDb"));
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -23,16 +24,20 @@ builder.Services.AddOpenApi();
 
 // Register Data Context
 builder.Services.AddScoped<MongoDbContext>();
+builder.Services.AddScoped<RedisContext>();
 
 // Register Repositories
 builder.Services.AddScoped<IBlogRepository, MongoDbBlogRepository>();
-builder.Services.AddScoped<IPostRepository, MongoDbPostRepository>();
+builder.Services.AddScoped<IMongoDbPostRepository, MongoDbPostRepository>();
+builder.Services.AddScoped<IRedisPostRepository, RedisPostRepository>();
 builder.Services.AddScoped<ICommentRepository, MongoDbCommentRepository>();
+builder.Services.AddScoped<IRedisCommentRepository, RedisCommentRepository>();
 builder.Services.AddScoped<IUserRepository, MongoDbUserRepository>();
 
 // Register Services
 builder.Services.AddScoped<IBlogService, BlogService>();
 builder.Services.AddScoped<IPostService, PostService>();
+builder.Services.AddScoped<ICommentService, CommentService>();
 
 var app = builder.Build();
 
